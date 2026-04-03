@@ -3,16 +3,16 @@ resource "aws_launch_template" "dev-launch-config" {
   vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
   user_data = filebase64("${"userdata.sh"}") // Userdata is added in the lauch config and launch added to ASG
   # Keep below arguments
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   image_id = "${lookup(var.AMI, var.AWS_REGION)}"
-  key_name = "${aws_key_pair.oregon-region-key-pair.id}"
+  key_name = "${aws_key_pair.mumbai-kp.id}"
   #associate_public_ip_address = true
 
 }
 
 // Sends your public key to the instance
-resource "aws_key_pair" "oregon-region-key-pair" {
-    key_name = "oregon-region-key-pair"
+resource "aws_key_pair" "mumbai-kp" {
+    key_name = "mumbai-kp"
     public_key = "${file(var.PUBLIC_KEY_PATH)}"
 }
 

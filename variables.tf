@@ -12,5 +12,5 @@ variable "AMI" {
 }
 
 variable "PUBLIC_KEY_PATH" {
-    default = ""
+    default = "/root/Terraform_asgmt_1/mumbai-KP.pub"
 }

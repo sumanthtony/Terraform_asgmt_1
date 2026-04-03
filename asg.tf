@@ -5,14 +5,14 @@ resource "aws_launch_template" "dev-launch-config" {
   # Keep below arguments
   instance_type = "t3.micro"
   image_id = "${lookup(var.AMI, var.AWS_REGION)}"
-  key_name = "${aws_key_pair.mumbai-kp.id}"
+  key_name = "${aws_key_pair.mumbai-KP.id}"
   #associate_public_ip_address = true
 
 }
 
 // Sends your public key to the instance
-resource "aws_key_pair" "mumbai-kp" {
-    key_name = "mumbai-kp"
+resource "aws_key_pair" "mumbai-KP" {
+    key_name = "mumbai-KP"
     public_key = "${file(var.PUBLIC_KEY_PATH)}"
 }
 
